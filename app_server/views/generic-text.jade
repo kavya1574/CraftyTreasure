@@ -1,15 +1,9 @@
-extends layout
-
-block content
+extends layout 
+block content 
   #banner.page-header
-    .row
+    .row 
       .col-md-6.col-sm-12
-        h1= title
-    .row
-      .col-md-6.col-sm-12
-        p
-        | This concept involves creating a website that focuses on promoting and supporting local artisans and their handmade craft products. The website serves as a platform to connect these artisans with a wider audience, allowing them to showcase their work and potentially sell their products online.
-        <br>
-        p The website's primary goal is to highlight and support local artisans by providing them with a digital platform to showcase their handmade crafts. The emphasis is on promoting the uniqueness, creativity, and personal stories behind each artisan's work.
-        <br>
-        p The CraftyTreasure website serves as a digital hub for artisans to connect with potential customers and for craft enthusiasts to explore unique, handmade creations from their local community. It encourages the appreciation of craftsmanship, supports local businesses, and fosters a sense of connection and community among artisans and art lovers.
+        h1=title 
+  .row 
+    .col-md-6.col-sm-12 
+      p !{(content).replace(/\n/g, '<br/>' )}

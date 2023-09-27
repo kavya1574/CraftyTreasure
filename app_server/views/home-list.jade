@@ -1,70 +1,28 @@
 extends layout
-
+include _includes/sharedHTMLfunctions
 block content
   #banner.page-header
     .row
       .col-lg-6
-        h1
-          | CraftyTreasures
-          small &nbsp;arts of design
+        h1= pageHeader.title
+          small &nbsp;#{pageHeader.strapline}
   .row
     .col-xs-12.col-sm-8
       .row.list-group
+      each item in items
         .col-xs-12.list-group-item
           h4
-            a(href='/location') Street view of paris
+            a(href='/location')= item.name
             <br>
-            img(border="0" src="images/s-l1200.jpg")
+            img(border="0" src=item.imm)
             small &nbsp;
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star-empty
-              span.glyphicon.glyphicon-star-empty
-          p Coloured Landscaper Paris Street View Original Handmade Oil Painting On Canvas Framed ( 40x3x28 )
-          p
-          h5 
-          p  ₹11,999
-          p
-            span.label.label-warning Add to Cart
-            | &nbsp;
-        .col-xs-12.list-group-item
-          h4
-            a(href='/location2') Jaipur Blue Pottery
-            <br>
-            img(border="0" src="images/blue pot.jpg")
-            small &nbsp;
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star-empty
-          p RAJ ROYAL Handmade Ceramic Hand Painted Blue Bail Potter
-          p
-          h5 
-          p ₹3,999
-          p
-            span.label.label-warning Add to Cart
-            | &nbsp;
-        .col-xs-12.list-group-item
-          h4
-            a(href='/location3') Dream catcher
-            <br>
-            img(border="0" src="images/dream cap.jpg")
-            small &nbsp;
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star
-              span.glyphicon.glyphicon-star-empty
-              span.glyphicon.glyphicon-star-empty
-              span.glyphicon.glyphicon-star-empty
-
-          p Cotton Macrame Dream Catcher
-          p
-          h5 
-          p ₹1,599
-          p
-            span.label.label-warning Add to Cart
-            | &nbsp;
+              +outputRating(item.rating)
+            p.description= item.description
+            p
+            p.price= item.price
+              
+                span.label.label-warning=item.cart
+                &nbsp;
     .col-xs-12.col-sm-4
-      p.lead
-        | searching for a unique art and craft desings? let CraftyTresures help you to find a unique arts of desing
+      p.lead=sidebar
+        | 

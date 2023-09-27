@@ -1,21 +1,17 @@
 extends layout
-
+include _includes/sharedHTMLfunctions
 block content
   .row.page-header
     .col-lg-12
-      h1 Street view of paris
+      h1=pageHeader.title
   .row
     .col-xs-12.col-md-9
       .row
         .col-xs-12.col-sm-6
-          img(border="0" src="images/s-l1200.jpg")
           p.rating
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star-empty
-            span.glyphicon.glyphicon-star-empty
-          p Gallery99 Coloured Landscaper Paris Street View Original Handmade Oil Painting On Canvas Framed ( 40x3x28 )<br>Brand: Gallery99
+          img(border="0" src="images/s-l1200.jpg")
+            +outputRating(item.rating)
+          p=item.description
           .panel.panel-primary
             .panel-heading
               h2.panel-title Details of this Item
@@ -30,6 +26,7 @@ block content
               p Material	: Canvas
               p Colour	: Multi
               p Room Type :	Room Décor, Dining Décor
+        .col-xs-12.col-sm-6.about-this-item      
           .panel.panel-primary
             .panel-heading
               h2.panel-title About this item 
@@ -46,37 +43,15 @@ block content
               a.btn.btn-default.pull-right(href='/location/review/new')  Add review
               h2.panel-title Customer Reviews
             .panel-body.review-container
+            each review in item.reviews
               .row
                 .review
                   .well.well-sm.review-header
                     span.rating
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-
-                    span.reviewAuthor       L.Madhusudhan
-                    small.reviewTimestamp
-                    p 16 July 2013
+                      +outputRating(review.rating)
+                    span.reviewAuthor #{review.author}
+                    small.reviewTimestamp  #{review.timestamp}
                   .col-xs-12
-                    p wow, Excellent
-                .review
-                  .well.well-sm.review-header
-                    span.rating
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star-empty
-                      span.glyphicon.glyphicon-star-empty
-                    span.reviewAuthor       Jafar
-                    small.reviewTimestamp
-                    p 16 June 2013
-                  .col-xs-12
-                    p Realistic peice of design and print
-                    p Quality of print is really good 
-                    p Frame looks amazing
-                    p Packing is also good
-                    p Go ahead with this purchase
-                    p The painting is very nice
-                    p I feel very happy to see it everytime
+                    p !{(review.reviewText).replace(/\n/g, '<br/>')}
+      .col-xs-12.col-md-3  
+        

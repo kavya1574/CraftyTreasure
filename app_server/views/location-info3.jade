@@ -1,21 +1,17 @@
 extends layout
-
+include _includes/sharedHTMLfunctions
 block content
   .row.page-header
     .col-lg-12
-      h1 Dream Catcher
+      h1=pageHeader.title
   .row
     .col-xs-12.col-md-9
       .row
         .col-xs-12.col-sm-6
           img(border="0" src="images/dream cap.jpg")
           p.rating
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star-empty
-          p Zodics - Cotton Macrame Dream Catcher Type Woven Feather Wall Hanging Handmade Dreamcatcher Boho Tassels Decoration Home Decor Ornament Craft. (DC - 005)
+            +outputRating(items.rating)
+          p=item.description  
           .panel.panel-primary
             .panel-heading
               h2.panel-title Details of this Item
@@ -29,6 +25,7 @@ block content
               p  Included Components : Cotton Thread
               p  Mounting Type	: Hanging
               p  Item Package Quantity : 5
+        .col-xs-12.col-sm-6.about-this-item            
           .panel.panel-primary
             .panel-heading
               h2.panel-title About this item 
@@ -44,31 +41,15 @@ block content
               a.btn.btn-default.pull-right(href='/location/review/new')  Add review
               h2.panel-title Customer Reviews
             .panel-body.review-container
+              each review in item.reviews
               .row
                 .review
                   .well.well-sm.review-header
                     span.rating
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-
-                    span.reviewAuthor  Abhilasha Rajpoot
-                    small.reviewTimestamp
-                    p 21 May 2011
+                      +outputRating(review.rating)
+                    span.reviewAuthor #{review.author}
+                    small.reviewTimestamp  #{review.timestamp}
                   .col-xs-12
-                    p  Good one to gift your dear once. It's really a big dream catcher.
-                .review
-                  .well.well-sm.review-header
-                    span.rating
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star
-                      span.glyphicon.glyphicon-star-empty
-                    span.reviewAuthor Taruni
-                    small.reviewTimestamp
-                    p 19 November 2022
-                  .col-xs-12
-                    p Worth the money. It's huge and I recommend it 1000%
+                    p !{(review.reviewText).replace(/\n/g, '<br/>')}
+      .col-xs-12.col-md-3  
+                    
